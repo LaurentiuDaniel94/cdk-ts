@@ -5,18 +5,18 @@ import { Construct } from 'constructs';
 
 
 
-export class L3Bucket extends Construct {
-  constructor(scope: Construct, id: string, expiration: number) {
-    super(scope, id);
+// export class L3Bucket extends Construct {
+//   constructor(scope: Construct, id: string, expiration: number) {
+//     super(scope, id);
 
-    new Bucket(this, 'myL3Bucket', {
-      lifecycleRules: [{
-        expiration: Duration.days(expiration)
-  }
-      ]
-    })
-  }
-}
+//     new Bucket(this, 'myL3Bucket', {
+//       lifecycleRules: [{
+//         expiration: Duration.days(expiration)
+//   }
+//       ]
+//     })
+//   }
+// }
 
 export class TsProjStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -40,6 +40,6 @@ export class TsProjStack extends cdk.Stack {
       }]
     })
 
-    new L3Bucket(this, 'myL3Bucket', 3);
+    // new L3Bucket(this, 'myL3Bucket', 3);
   }
 }
