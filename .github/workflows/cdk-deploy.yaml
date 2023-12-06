@@ -36,5 +36,8 @@ jobs:
       - name: Synth stack
         run: cdk synth
 
+      - name: CDK Diff
+        run: cdk diff
+
       - name: Deploy stack
         run: cdk deploy --all --require-approval never
