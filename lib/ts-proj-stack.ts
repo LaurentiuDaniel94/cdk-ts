@@ -33,12 +33,15 @@ export class TsProjStack extends cdk.Stack {
     })
 
     // create an S3 bucket with a lifecycle rule to delete objects after 2 days with L2 construct
-    new Bucket(this, 'myL2Bucket', {
+    const myL2Bucket = new Bucket(this, 'myL2Bucket', {
       lifecycleRules: [{
         expiration: Duration.days(2)
       }]
     })
 
+    new cdk.CfnOutput(this, 'myL2BucketName', {
+      value: myL2Bucket.bucketName
     // new L3Bucket(this, 'myL3Bucket', 3);
+  })
   }
 }
