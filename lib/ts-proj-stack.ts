@@ -32,10 +32,18 @@ export class TsProjStack extends cdk.Stack {
       }
     })
 
+
+    const duration = new cdk.CfnParameter(this, 'duration',{
+    default: 6,
+    minValue: 1,
+    maxValue: 10,
+    type: 'Number',
+  });
+
     // create an S3 bucket with a lifecycle rule to delete objects after 2 days with L2 construct
     const myL2Bucket = new Bucket(this, 'myL2Bucket', {
       lifecycleRules: [{
-        expiration: Duration.days(2)
+        expiration: Duration.days(duration.valueAsNumber)
       }]
     })
 
