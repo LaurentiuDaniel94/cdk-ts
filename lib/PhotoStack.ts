@@ -20,6 +20,6 @@ export class PhotoStack extends cdk.Stack {
 
     private initializeSuffix() {
         const shortStackId = Fn.select(2, Fn.split('/', this.stackId));
-        const shortStack = Fn.select(4, Fn.split('-', this.stackId))
+        this.stackSuffix = Fn.select(4, Fn.split('-', this.stackId))
     }
 }
