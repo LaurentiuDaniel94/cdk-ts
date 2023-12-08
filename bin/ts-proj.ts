@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { TsProjStack } from '../lib/ts-proj-stack';
-import { PhotoStack } from '../lib/PhotoStack';
-import { PhotoHandlerStack } from '../lib/PhotoHandlerStack';
-
-
+import { PhotosStack } from '../lib/PhotosStack';
+import { PhotosHandlerStack } from '../lib/PhotosHandlerStack';
+import { BucketTagger } from './Tagger';
 
 const app = new cdk.App();
-new TsProjStack(app, 'TsProjStack'); 
-new PhotoStack(app, 'PhotoStack')
-new PhotoHandlerStack(app, 'PhotoHandlerStack')
+const photosStack = new PhotosStack(app, 'PhotosStack');
+new PhotosHandlerStack(app, 'PhotosHandlerStack', {
+    targetBucketArn: photosStack.photosBucketArn
+});
+
+const tagger = new BucketTagger('level', 'test');
+cdk.Aspects.of(app).add(tagger);

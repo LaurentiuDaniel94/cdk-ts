@@ -5,7 +5,7 @@ import { Code, Function as LambdaFunction } from "aws-cdk-lib/aws-lambda";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 
 
-export class PhotoHandlerStack extends cdk.Stack {
+export class PhotosHandlerStack extends cdk.Stack {
 
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
