@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 import * as cdk from 'aws-cdk-lib';
 import { Bucket, CfnBucket } from "aws-cdk-lib/aws-s3";
 import { Fn } from "aws-cdk-lib";
-
+import { CfnOutput } from "aws-cdk-lib";
 
 export class PhotoStack extends cdk.Stack {
 
@@ -13,11 +13,16 @@ export class PhotoStack extends cdk.Stack {
 
         this.initializeSuffix();
 
-        new Bucket(this, 'PhotosBucket2', {
+        const photosBucket = new Bucket(this, 'PhotosBucket2', {
             bucketName: `photos-bucket-${this.stackSuffix}`
         });
-    }
 
+        new CfnOutput(this, 'photos-bucket', {
+            value:photosBucket.bucketArn,
+            exportName: 'photos-bucket'
+    })
+
+}
     private initializeSuffix() {
         const shortStackId = Fn.select(2, Fn.split('/', this.stackId));
         this.stackSuffix = Fn.select(4, Fn.split('-', shortStackId))
