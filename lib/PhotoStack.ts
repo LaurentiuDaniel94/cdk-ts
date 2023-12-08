@@ -11,7 +11,7 @@ export class PhotoStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        this.initializeSuffix
+        this.initializeSuffix();
 
         new Bucket(this, 'PhotosBucket2', {
             bucketName: `photos-bucket-${this.stackSuffix}`
