@@ -31,5 +31,5 @@ jobs:
           aws-region: ${{vars.AWS_REGION}}
       - name: Destroy
         env:
-            CDK_APP_PATH: /TS-Proj
+            CDK_APP_PATH: .
         run: cdk destroy --app $CDK_APP_PATH --force -all 
